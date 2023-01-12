@@ -5,21 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UseCases.PluginInterfaces;
-using UseCases.UseCaseInterfaces;
 
-namespace UseCases
+namespace UseCases.ProductsUseCase
 {
-    public class AddProductUseCase : IAddProductUseCase
+    public class ViewProductsByCategoryId : IViewProductsByCategoryId
     {
         private readonly IProductRepository productRepository;
 
-        public AddProductUseCase(IProductRepository productRepository)
+        public ViewProductsByCategoryId(IProductRepository productRepository)
         {
             this.productRepository = productRepository;
         }
-        public void Execute(Product product)
+        public IEnumerable<Product> Execute(int categoryId)
         {
-            productRepository.AddProduct(product);
+            return productRepository.GetProductsByCategoryId(categoryId);
         }
     }
 }
